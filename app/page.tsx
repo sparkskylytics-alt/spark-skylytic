@@ -1,4 +1,7 @@
+"use client";
+
 import Image from "next/image";
+import { useEffect, useRef, useState } from "react";
 import { ArrowRight, ArrowUpRight, Play } from "lucide-react";
 import Footer from "./components/Footer";
 import Navbar from "./components/Navbar";
@@ -6,6 +9,45 @@ import {
   ArrowLeft,
   Quote,
 } from "lucide-react";
+
+const testimonials = [
+  {
+    name: "Sai Prabha Ayurveda",
+    role: "Healthcare Brand",
+    review:
+      "The Spark Skylytics team is extremely hardworking, professional, and dedicated. They truly understand digital marketing strategies and deliver results with creativity and precision. Their timely communication and attention to detail make them stand out.",
+  },
+  {
+    name: "Sunshine Decor",
+    role: "Interior Design",
+    review:
+      "If you're looking for a reliable digital marketing agency, Spark Skylytics is an excellent choice. We are very satisfied with their work, communication, and the overall results they delivered.",
+  },
+  {
+    name: "Kidzee Aksharm",
+    role: "Education",
+    review:
+      "A nice bunch of young, energetic and enthusiastic professionals. They are doing an excellent job as a digital marketing agency and always provide quick support whenever needed.",
+  },
+  {
+    name: "Dr. Pinku Phogat",
+    role: "Healthcare",
+    review:
+      "Good marketing company with a supportive and dedicated team. They understand business requirements well and provide reliable digital marketing solutions.",
+  },
+  {
+    name: "Mrs. Prachi",
+    role: "Client",
+    review:
+      "Wonderful work by the entire team. Professional, responsive, and committed to delivering quality results. Keep up the great work!",
+  },
+  {
+    name: "Bharat Batla",
+    role: "Creative Client",
+    review:
+      "Best team for editing. Cooperative, energetic and creative young professionals who always deliver quality work on time.",
+  },
+];
 
 const stats = [
   ["200+", "Happy Clients"],
@@ -16,51 +58,71 @@ const stats = [
 
 const services = [
   [
-    "Web Design",
-    "Beautiful, responsive websites that engage visitors and convert them into customers.",
-    "/Icons/webdesignicon.png",
-  ],
-  [
     "Digital Marketing",
     "Data-driven campaigns that increase visibility, generate leads and boost sales.",
     "/Icons/digitalmarketingicon.png",
-  ],
-  [
-    "SEO & Analytics",
-    "Improve rankings, track performance and grow your traffic with advanced SEO.",
-    "/Icons/seoanalysisicon.png",
   ],
   [
     "Branding",
     "Build a memorable brand identity that connects and creates lasting impact.",
     "/Icons/brandingicon.png",
   ],
+  [
+    "Web Design",
+    "Beautiful, responsive websites that engage visitors and convert them into customers.",
+    "/Icons/webdesignicon.png",
+  ],
+  [
+    "SEO & Analytics",
+    "Improve rankings, track performance and grow your traffic with advanced SEO.",
+    "/Icons/seoanalysisicon.png",
+  ],
+
 ];
 
 const brands = [
-  "webflow",
-  "slack",
-  "Notion",
-  "HubSpot",
-  "loom",
-  "airbnb",
+  { logo: "/brands/veerji.png", alt: "Veer Ji" },
+  { logo: "/brands/hiretrip.png", alt: "hiretrip" },
+  { logo: "/brands/BB Logo.png", alt: "BB" },
+  { logo: "/brands/Sunshine Logo.png", alt: "Sunshine" },
+  { logo: "/brands/Gm logo.jpeg", alt: "GM" },
+  { logo: "/brands/saiii.png", alt: "sai prabha ayurved" },
 ];
 
-
 const reels = [
-  ["Web Design Trends 2024", "12.4K", "/Reels/web-design-trends.png"],
-  ["SEO Tips That Actually Work", "8.7K", "/Reels/seo-tips.png"],
-  ["Landing Page Tips That Convert", "11.6K", "/Reels/landing-page-tips.png"],
-  ["Brand Identity Design Process", "9.3K", "/Reels/brand-identity.png"],
+  ["Web Design Trends 2024", "12.4K", "/Reels/reel-1.mp4"],
+  ["SEO Tips That Actually Work", "8.7K", "/Reels/reel-2.mp4"],
+  ["Landing Page Tips That Convert", "11.6K", "/Reels/reel-3.mp4"],
+  ["Brand Identity Design Process", "9.3K", "/Reels/reel-4.mp4"],
+  ["Brand Identity Design Process", "9.3K", "/Reels/reel-5.mp4"],
+  ["Brand Identity Design Process", "9.3K", "/Reels/reel-6.mp4"],
+  ["Brand Identity Design Process", "9.3K", "/Reels/reel-7.mp4"],
+  ["Brand Identity Design Process", "9.3K", "/Reels/reel-8.mp4"],
+  ["Brand Identity Design Process", "9.3K", "/Reels/reel-9.mp4"],
 ];
 
 const projects = [
-  ["Fintech Website", "Web Design", "/Projects/fintech.png"],
-  ["E-commerce Store", "Development", "/Projects/ecommerce.png"],
-  ["SaaS Landing Page", "Web Design", "/Projects/saas.png"],
-  ["Brand Identity Design", "Branding", "/Projects/branding.png"],
+  [
+    "Brand Identity & Creative",
+    "Branding",
+    "/Projects/branding.png",
+  ],
+  [
+    "Website & Search Optimization",
+    "Web Development",
+    "/Projects/website.png",
+  ],
+  [
+    "Social Media & Content Marketing",
+    "Digital Marketing",
+    "/Projects/download.jpg",
+  ],
+  [
+    "Performance Marketing",
+    "Growth Marketing",
+    "/Projects/performance.png",
+  ],
 ];
-
 const shell = "mx-auto w-[min(1120px,calc(100%_-_48px))] max-sm:w-[calc(100%_-_28px)]";
 const pill =
   "inline-flex min-h-10 items-center justify-center gap-2 rounded-full px-5 text-sm font-semibold leading-none transition hover:-translate-y-0.5";
@@ -77,8 +139,93 @@ function BadgeIcon() {
 }
 
 export default function Home() {
+  const scrollRef = useRef<HTMLDivElement>(null);
+  const isDragging = useRef(false);
+  const startX = useRef(0);
+  const startScrollLeft = useRef(0);
+  const videoRefs = useRef<(HTMLVideoElement | null)[]>([]);
+
+  const onMouseDown = (e: React.MouseEvent) => {
+    if (!scrollRef.current) return;
+    isDragging.current = true;
+    startX.current = e.pageX;
+    startScrollLeft.current = scrollRef.current.scrollLeft;
+    scrollRef.current.style.scrollBehavior = "auto";
+  };
+
+  const stopDragging = () => {
+    isDragging.current = false;
+    if (scrollRef.current) scrollRef.current.style.scrollBehavior = "smooth";
+  };
+
+
+  const [currentTestimonial, setCurrentTestimonial] = useState(0);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentTestimonial((prev) =>
+        prev === testimonials.length - 1 ? 0 : prev + 1
+      );
+    }, 5000); // change every 5 seconds
+
+    return () => clearInterval(interval);
+  }, []);
+
+  const nextTestimonial = () => {
+    setCurrentTestimonial((prev) =>
+      (prev + 1) % testimonials.length
+    );
+  };
+
+  const prevTestimonial = () => {
+    setCurrentTestimonial((prev) =>
+      prev === 0 ? testimonials.length - 1 : prev - 1
+    );
+  };
+  const testimonial = testimonials[currentTestimonial];
+
+  const initials = testimonial.name
+    .split(" ")
+    .map((word) => word[0])
+    .join("")
+    .slice(0, 2)
+    .toUpperCase();
+
+
+  const onMouseMove = (e: React.MouseEvent) => {
+    if (!isDragging.current || !scrollRef.current) return;
+    e.preventDefault();
+    const delta = e.pageX - startX.current;
+    scrollRef.current.scrollLeft = startScrollLeft.current - delta;
+  };
+
+  // lets people scroll the row using their vertical mouse wheel / trackpad too
+  const onWheel = (e: React.WheelEvent) => {
+    if (!scrollRef.current) return;
+    if (Math.abs(e.deltaY) > Math.abs(e.deltaX)) {
+      e.preventDefault();
+      scrollRef.current.scrollLeft += e.deltaY;
+    }
+  };
+
+  const scrollNext = () => {
+    if (!scrollRef.current) return;
+    const el = scrollRef.current;
+    const cardWidth = el.firstElementChild
+      ? (el.firstElementChild as HTMLElement).offsetWidth + 14 // 14 = gap-3.5
+      : 280;
+
+    const atEnd = el.scrollLeft + el.clientWidth >= el.scrollWidth - 10;
+
+    if (atEnd) {
+      el.scrollTo({ left: 0, behavior: "smooth" });
+    } else {
+      el.scrollBy({ left: cardWidth, behavior: "smooth" });
+    }
+  };
+
   return (
-    <main className="min-h-screen overflow-hidden bg-[radial-gradient(circle_at_76%_7%,rgba(8,83,68,0.12),transparent_24rem),radial-gradient(circle_at_13%_53%,rgba(189,178,138,0.12),transparent_26rem),linear-gradient(180deg,#fffdfa_0%,#f8f6ef_66%,#f4f0e7_100%)] text-[#071117]">
+    <main className="min-h-screen  bg-[radial-gradient(circle_at_76%_7%,rgba(8,83,68,0.12),transparent_24rem),radial-gradient(circle_at_13%_53%,rgba(189,178,138,0.12),transparent_26rem),linear-gradient(180deg,#fffdfa_0%,#f8f6ef_66%,#f4f0e7_100%)] text-[#071117]">
       <Navbar />
 
       <section
@@ -90,18 +237,8 @@ export default function Home() {
           className="relative z-10 max-w-[540px]
     max-lg:max-w-full max-lg:text-center"
         >
-          <p
-            className="mb-5 w-fit rounded-full bg-white/80 px-3.5 py-2
-      text-[11px] font-black uppercase tracking-[0.08em] text-[#173f37]
-      shadow-[inset_0_0_0_1px_rgba(18,60,50,0.08)]
-      max-lg:mx-auto"
-          >
-            <span className="mr-2 inline-block size-[7px] rounded-full bg-[#28836d]" />
-            Marketing & Web Design Agency
-          </p>
-
           <h1
-            className="mb-4 text-[clamp(38px,4vw,58px)] font-semibold leading-[1.05]
+            className="mb-4 text-[clamp(30px,4vw,45px)] font-semibold leading-[1.05]
       max-md:text-[44px]
       max-sm:text-[34px]"
           >
@@ -124,11 +261,11 @@ export default function Home() {
             className="mt-8 flex flex-wrap items-center gap-4
       max-lg:justify-center"
           >
-            <a className={darkPill} href="#contact">
+            <a className={darkPill} href="/contact">
               Get a Free Quote <ArrowRight size={16} />
             </a>
 
-            <a className={lightPill} href="#work">
+            <a className={lightPill} href="/portfolio">
               View Our Work
               <Play
                 className="rounded-full border border-[#9aa9a4] p-1"
@@ -138,7 +275,7 @@ export default function Home() {
           </div>
 
           {/* Stats */}
-          <div
+          {/* <div
             className="mt-12 flex items-center justify-between gap-6
       max-lg:grid max-lg:grid-cols-2
       max-sm:grid-cols-2
@@ -157,32 +294,31 @@ export default function Home() {
                 </span>
               </div>
             ))}
-          </div>
+          </div> */}
         </div>
 
-        {/* Right Image */}
-        <div
-          className="absolute inset-0 z-0
-    max-lg:relative
-    max-lg:h-[380px]
-    max-md:h-[320px]
-    max-sm:h-[260px]
-    max-lg:w-full"
-        >
+        {/* Background Image */}
+        <div className="absolute inset-0 z-0">
           <Image
             src="/hero-infinity.png"
             alt="Hero"
             fill
             priority
-            className="object-contain object-right max-lg:object-center"
+            sizes="100vw"
+            className="object-cover rounded-2xl object-center"
           />
+
+          {/* Desktop: fade left side into the page background so text stays readable */}
+          <div className="absolute inset-0 hidden bg-gradient-to-r from-[#fffdfa] via-[#fffdfa]/60 to-transparent lg:block" />
+
+          {/* Mobile: soft full overlay so centered text sits on a calm background */}
+          <div className="absolute inset-0 bg-[#fffdfa]/70 lg:hidden" />
         </div>
       </section>
 
       <section className={`${shell} mt-8`}>
         <div className="rounded-2xl border border-[#e8e6df] bg-white shadow-[0_12px_35px_rgba(0,0,0,0.06)]">
           <div className="flex flex-col lg:flex-row lg:items-center">
-
             {/* Left */}
             <div className="border-b border-[#e6e6e6] px-6 py-5 text-center lg:min-w-[170px] lg:border-b-0 lg:border-r lg:text-left">
               <p className="text-[10px] font-bold uppercase tracking-[0.15em] text-[#6d6d6d]">
@@ -193,32 +329,29 @@ export default function Home() {
               </p>
             </div>
 
-            {/* Brands */}
+            {/* Logos */}
             <div className="grid flex-1 grid-cols-2 sm:grid-cols-3 lg:grid-cols-6">
               {brands.map((brand, index) => (
                 <div
-                  key={brand}
+                  key={brand.alt}
                   className={`
               flex h-20 items-center justify-center
               border-[#e6e6e6]
               lg:border-r
-              ${index !== brands.length - 1
-                      ? "border-b lg:border-b-0"
-                      : ""
-                    }
-              ${index === brands.length - 1
-                      ? "lg:border-r-0"
-                      : ""
-                    }
+              ${index !== brands.length - 1 ? "border-b lg:border-b-0" : ""}
+              ${index === brands.length - 1 ? "lg:border-r-0" : ""}
             `}
                 >
-                  <span className="text-lg font-semibold tracking-tight text-[#555] sm:text-xl">
-                    {brand}
-                  </span>
+                  <Image
+                    src={brand.logo}
+                    alt={brand.alt}
+                    width={120}
+                    height={50}
+                    className="h-15 w-auto object-contain transition duration-300 hover:scale-105"
+                  />
                 </div>
               ))}
             </div>
-
           </div>
         </div>
       </section>
@@ -238,73 +371,189 @@ export default function Home() {
               </div>
               <h3 className="mb-2.5 text-xl font-bold">{title}</h3>
               <p className="mb-5 text-sm leading-7 text-[#5d6864]">{text}</p>
-              <a className="inline-flex items-center gap-2 text-sm font-bold" href="#">
-                Explore More <ArrowRight size={16} />
-              </a>
             </article>
           ))}
         </div>
       </section>
 
-      <section className={`${shell} relative grid min-h-[300px] grid-cols-[0.9fr_1fr] items-center overflow-hidden rounded-[18px] bg-[radial-gradient(circle_at_68%_24%,rgba(101,197,168,0.42),transparent_16rem),linear-gradient(120deg,rgba(1,23,19,0.95),rgba(4,52,43,0.9)),url('/hero-infinity.png')] bg-right bg-no-repeat p-10 text-white max-lg:grid-cols-1 max-sm:p-6`}>
-        <div>
-          <p className="mb-4 text-[11px] font-black uppercase tracking-[0.08em] text-white/80">Immersive Experience</p>
-          <h2 className="mb-4 text-[clamp(30px,3vw,42px)] leading-[1.12]">We Bring Ideas<br />To Life In 3D</h2>
-          <span className="block max-w-[360px] text-sm leading-7 text-[#d9e3de]">Experience our work like never before with interactive 3D animations that showcase creativity and strategy in action.</span>
-          <a className={`${pill} mt-6 border border-white/20 bg-white/10 text-white`} href="#">
-            Watch 3D Showreel <Play size={16} />
+      <section
+        className={`${shell} relative grid min-h-[340px] grid-cols-[0.95fr_1fr] items-center overflow-hidden rounded-[20px] bg-gradient-to-r from-[#021712] to-[#08382d] px-8 py-8 text-white max-lg:grid-cols-1 max-lg:px-6 max-lg:py-8 max-sm:px-5 max-sm:py-6`}
+      >
+        {/* Background Video */}
+        <video
+          autoPlay
+          muted
+          loop
+          playsInline
+          className="absolute inset-0 h-full w-full object-cover"
+        >
+          <source src="/Reels/main-reel.mp4" type="video/mp4" />
+        </video>
+
+        {/* Overlay */}
+        <div className="absolute inset-0 bg-gradient-to-r from-[#011713]/90 via-[#07352b]/70 to-[#07352b]/55" />
+
+        {/* Left Content */}
+        <div className="relative z-10 max-w-[360px]">
+          <p className="mb-2 text-[10px] font-extrabold uppercase tracking-[0.18em] text-emerald-300">
+            Immersive Experience
+          </p>
+
+          <h2 className="mb-3 text-[clamp(28px,3vw,40px)] font-semibold leading-tight">
+            We Bring Ideas
+            <br />
+            To Life In 3D
+          </h2>
+
+          <p className="text-sm leading-6 text-white/80">
+            Experience our work through cinematic 3D animations, web development,
+            branding and digital marketing solutions that help businesses grow.
+          </p>
+
+          <a
+            href="/Reels/main-reel.mp4"
+            target="_blank"
+            className={`${pill} mt-5 border border-white/20 bg-white/10 px-5 py-3 text-white backdrop-blur-md transition hover:bg-white/20`}
+          >
+            Watch Showreel
+            <Play size={16} />
           </a>
         </div>
-        <button className="size-20 justify-self-center rounded-full border-[5px] border-white bg-white/10 text-3xl shadow-[0_0_50px_rgba(255,255,255,0.24)]" aria-label="Play showreel">
-          <Play className="mx-auto" fill="currentColor" />
-        </button>
-        <ul className="absolute bottom-5 left-[48%] right-[12%] flex list-none justify-around text-sm font-extrabold text-[#e4eee9] max-lg:static max-lg:mt-6">
-          {["Interactive", "Engaging", "Impressive"].map((item) => <li key={item}>{item}</li>)}
+
+        {/* Right Side Glow */}
+        <div className="relative z-10 flex items-center justify-center max-lg:hidden">
+          <div className="h-36 w-36 rounded-full bg-emerald-400/15 blur-3xl" />
+        </div>
+
+        {/* Bottom Tags */}
+        <ul className="absolute bottom-4 left-[48%] right-8 z-10 flex justify-evenly text-xs font-semibold uppercase tracking-wider text-white/85 max-lg:static max-lg:mt-6 max-lg:justify-center max-lg:gap-8">
+          {["Interactive", "Creative", "Results Driven"].map((item) => (
+            <li key={item}>{item}</li>
+          ))}
         </ul>
       </section>
 
-      <section className={`${shell} grid grid-cols-[300px_1fr_auto] items-center gap-6 py-20 max-lg:grid-cols-1`}>
-        <div className="max-w-[360px]">
-          <p className="mb-3.5 text-[13px] font-bold uppercase tracking-[0.12em] text-[#0a5144]">Instagram Reels</p>
-          <h2 className="mb-4 text-3xl font-semibold leading-[1.15]">Tips, Insights &<br />Behind The Scenes</h2>
-          <span className="mb-5 block text-lg leading-8 text-[#707070]">Short videos. Real strategies. Big impact.</span>
-          <a className={darkPill} href="#">Follow Us <ArrowUpRight size={16} /></a>
-        </div>
-        <div className="flex min-w-0 gap-3.5 overflow-hidden max-lg:overflow-x-auto max-lg:pb-2">
-          {reels.map(([title, views, image]) => (
-            <article
-              className="relative flex h-[250px] min-w-[120px] flex-1 basis-0 flex-col justify-between overflow-hidden rounded-[20px] bg-cover bg-center p-4.5 text-white shadow-[0_18px_40px_rgba(0,0,0,0.12)] transition hover:-translate-y-2 max-lg:min-w-[170px]"
-              key={title}
-              style={{ backgroundImage: `linear-gradient(to top,rgba(0,0,0,.55),rgba(0,0,0,.1)),url(${image})` }}
+      <section
+  className={`${shell} grid grid-cols-[300px_1fr_auto] items-center gap-6 py-20 max-lg:grid-cols-1`}
+>
+  <div className="max-w-[360px]">
+    <p className="mb-3.5 text-[13px] font-bold uppercase tracking-[0.12em] text-[#0a5144]">
+      Instagram Reels
+    </p>
+    <h2 className="mb-4 text-3xl font-semibold leading-[1.15]">
+      Tips, Insights &<br />Behind The Scenes
+    </h2>
+    <span className="mb-5 block text-lg leading-8 text-[#707070]">
+      Short videos. Real strategies. Big impact.
+    </span>
+    <a className={darkPill} href="https://www.instagram.com/spark_skylytics/">
+      Follow Us <ArrowUpRight size={16} />
+    </a>
+  </div>
+
+  <div
+    ref={scrollRef}
+    onMouseDown={onMouseDown}
+    onMouseMove={onMouseMove}
+    onMouseUp={stopDragging}
+    onMouseLeave={stopDragging}
+    onWheel={onWheel}
+    className="flex min-w-0 cursor-grab gap-3.5 overflow-x-auto pb-2 select-none [scrollbar-width:none] active:cursor-grabbing [&::-webkit-scrollbar]:hidden"
+    style={{ scrollBehavior: "smooth" }}
+  >
+    {reels.map(([title, views, media], index) => {
+      const isVideo = media.endsWith(".mp4");
+      return (
+        <article
+          key={title}
+          onMouseEnter={() => {
+            const video = videoRefs.current[index];
+            if (!video) return;
+            video.muted = false;
+            video.volume = 1;
+            video.play().catch(() => {});
+          }}
+          onMouseLeave={() => {
+            const video = videoRefs.current[index];
+            if (!video) return;
+            video.muted = true;
+          }}
+          className="relative flex h-[290px] min-w-[160px] flex-1 basis-0 flex-col justify-between overflow-hidden rounded-[20px] shadow-[0_18px_40px_rgba(0,0,0,0.12)] transition hover:-translate-y-2 max-lg:min-w-[170px]"
+        >
+          {/* Background */}
+          {isVideo ? (
+            <video
+              ref={(el) => {
+                videoRefs.current[index] = el;
+              }}
+              autoPlay
+              muted
+              loop
+              playsInline
+              className="absolute inset-0 h-full w-full object-cover"
             >
-              <h3 className="relative z-10 text-[17px] font-bold leading-[1.35]">{title}</h3>
-              <button className="absolute left-1/2 top-[52%] z-10 grid size-[52px] -translate-x-1/2 -translate-y-1/2 place-items-center rounded-full bg-white text-[#073f35] shadow-[0_8px_20px_rgba(0,0,0,0.15)] transition hover:scale-105" aria-label={`Play ${title}`}>
-                <Play size={22} fill="currentColor" />
-              </button>
-              <small className="relative z-10 flex items-center gap-1 text-[15px] font-bold">
-                <ArrowUpRight size={16} strokeWidth={3} />
-                {views}
-              </small>
-            </article>
-          ))}
-        </div>
-        <button className="grid size-[60px] place-items-center rounded-full bg-white text-[#073f35] shadow-[0_10px_25px_rgba(0,0,0,0.12)] transition hover:translate-x-1.5" aria-label="Next reel">
-          <ArrowRight size={26} strokeWidth={2.5} />
-        </button>
-      </section>
+              <source src={media} type="video/mp4" />
+            </video>
+          ) : (
+            <img
+              src={media}
+              alt={title}
+              draggable={false}
+              className="absolute inset-0 h-full w-full object-cover"
+            />
+          )}
+
+          {/* Dark Overlay */}
+          <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
+        </article>
+      );
+    })}
+  </div>
+
+  <button
+    onClick={scrollNext}
+    className="grid size-[60px] place-items-center rounded-full bg-white text-[#073f35] shadow-[0_10px_25px_rgba(0,0,0,0.12)] transition hover:translate-x-1.5 max-lg:justify-self-center"
+    aria-label="Next reel"
+  >
+    <ArrowRight size={26} strokeWidth={2.5} />
+  </button>
+</section>
 
       <section id="work" className={shell}>
         <div className="mb-6 grid grid-cols-[250px_1fr_max-content] items-end gap-6 max-lg:grid-cols-1">
           <div>
-            <p className="mb-3 text-[11px] font-black uppercase tracking-[0.08em] text-[#173f37]">Our Work</p>
-            <h2 className="text-2xl font-bold leading-relaxed">Transforming Ideas<br />Into Digital Success</h2>
+            <p className="mb-3 text-[11px] font-black uppercase tracking-[0.08em] text-[#173f37]">
+              Our Expertise
+            </p>
+
+            <h2 className="text-2xl font-bold leading-relaxed">
+              Digital Solutions
+              <br />
+              That Drive Growth
+            </h2>
           </div>
-          <div className="flex flex-wrap gap-3">
-            {["All", "Web Design", "E-commerce", "Branding", "Digital Marketing"].map((item) => (
-              <button className={`min-h-9 rounded-full border px-5 text-xs ${item === "All" ? "border-[#073f35] bg-[#073f35] text-white" : "border-[#d3d9d5] bg-white/70"}`} key={item}>{item}</button>
+
+          {/* <div className="flex flex-wrap gap-3">
+            {[
+              "All",
+              "Branding",
+              "Web Development",
+              "Digital Marketing",
+              "Growth Marketing",
+            ].map((item) => (
+              <button
+                key={item}
+                className={`min-h-9 rounded-full border px-5 text-xs ${item === "All"
+                    ? "border-[#073f35] bg-[#073f35] text-white"
+                    : "border-[#d3d9d5] bg-white/70"
+                  }`}
+              >
+                {item}
+              </button>
             ))}
-          </div>
-          <a className="text-sm font-black" href="#">View All Projects <ArrowRight className="inline" size={16} /></a>
+          </div> */}
+
+
         </div>
         <div className="grid grid-cols-4 gap-5 max-lg:grid-cols-2 max-sm:grid-cols-1">
           {projects.map(([title, type, image]) => (
@@ -312,56 +561,18 @@ export default function Home() {
               <div className="relative mb-3.5 h-[150px] overflow-hidden rounded-md bg-[#eef1f0]">
                 <Image src={image} alt={title} fill className="object-cover" />
               </div>
-              <h3 className="mb-2.5 text-xl font-bold">{title}</h3>
-              <span className="text-xs text-[#5d6864]">{type}</span>
-              <a className="absolute bottom-4 right-4 grid size-9 place-items-center rounded-full border border-[#bfd0ca] text-[#073f35]" href="#" aria-label={`Open ${title}`}>
-                <ArrowUpRight size={18} />
-              </a>
+              <h3 className="mb-3 truncate text-sm font-semibold">
+                {title}
+              </h3>
             </article>
           ))}
         </div>
       </section>
 
-     <section
-  className={`${shell} mt-6 rounded-2xl border border-[#e8e6df] bg-white/80 px-6 py-5 shadow-[0_12px_35px_rgba(8,34,28,0.08)]`}
->
-  <div className="grid grid-cols-4 gap-4 max-lg:grid-cols-2 max-sm:grid-cols-1">
-    {[
-      ["200+", "Happy Clients"],
-      ["350+", "Projects Completed"],
-      ["98%", "Client Satisfaction"],
-      ["5+", "Years Experience"],
-    ].map(([value, label], index) => (
-      <div
-        key={label}
-        className={`flex items-center gap-3 ${
-          index !== 3 ? "lg:border-r lg:border-[#e6ebe8] lg:pr-4" : ""
-        } max-lg:border-none`}
-      >
-        {/* Icon */}
-        <div className="scale-90">
-          <BadgeIcon />
-        </div>
-
-        {/* Text */}
-        <div>
-          <h3 className="text-[28px] font-bold leading-none text-[#071117]">
-            {value}
-          </h3>
-
-          <p className="mt-1 text-[13px] font-medium text-[#6b7471]">
-            {label}
-          </p>
-        </div>
-      </div>
-    ))}
-  </div>
-</section>
-
       <section
         className={`${shell} grid grid-cols-[220px_1fr_240px] items-center gap-10 py-16 max-lg:grid-cols-1 max-lg:text-center`}
       >
-        {/* Left Side */}
+        {/* Left */}
         <div className="max-lg:flex max-lg:flex-col max-lg:items-center">
           <p className="mb-3 text-[11px] font-black uppercase tracking-[0.08em] text-[#173f37]">
             Client Love
@@ -372,100 +583,96 @@ export default function Home() {
           </h2>
 
           <div className="mt-8 flex gap-4">
-            <button className="grid h-11 w-11 place-items-center rounded-full border border-[#dfe4df] bg-white shadow-md transition hover:bg-[#073f35] hover:text-white">
+            <button
+              onClick={prevTestimonial}
+              className="grid h-11 w-11 place-items-center rounded-full border border-[#dfe4df] bg-white shadow-md transition hover:bg-[#073f35] hover:text-white"
+            >
               <ArrowLeft size={18} />
             </button>
 
-            <button className="grid h-11 w-11 place-items-center rounded-full border border-[#dfe4df] bg-white shadow-md transition hover:bg-[#073f35] hover:text-white">
+            <button
+              onClick={nextTestimonial}
+              className="grid h-11 w-11 place-items-center rounded-full border border-[#dfe4df] bg-white shadow-md transition hover:bg-[#073f35] hover:text-white"
+            >
               <ArrowRight size={18} />
             </button>
           </div>
         </div>
 
-        {/* Testimonial Card */}
-        <div>
-          <article className="rounded-[24px] border border-[#ece8e1] bg-white px-8 py-7 shadow-[0_18px_45px_rgba(8,34,28,0.08)] max-sm:px-6">
+        {/* Testimonial */}
+        <div
+          key={currentTestimonial}
+          className="rounded-3xl border border-[#ebe7df] bg-white/90 p-7 shadow-[0_20px_60px_rgba(7,63,53,0.08)] backdrop-blur-sm transition-all duration-700 animate-in fade-in slide-in-from-bottom-2"
+        >
+          {/* Rating */}
 
-            <Quote
-              size={36}
-              strokeWidth={3}
-              className="mb-5 text-[#0b6b58]"
-            />
 
-            <p className="text-[17px] leading-8 text-[#2d2d2d]">
-              SparkSkylytics transformed our online presence completely.
-              The new website is beautiful, fast and the marketing strategy
-              brought us 3X more leads in just a few months.
-            </p>
+          {/* Quote */}
+          <Quote
+            size={32}
+            strokeWidth={2.5}
+            className="mb-4 text-[#0b6b58]"
+          />
 
-            <div className="mt-7 flex items-center gap-4 max-lg:justify-center">
-              <Image
-                src="/testimonial/user.png"
-                alt="Rohit Mehta"
-                width={52}
-                height={52}
-                className="rounded-full border"
-              />
+          {/* Review */}
+          <p className="min-h-[120px] text-[16px] leading-8 text-[#374151] transition-all duration-500">
+            "{testimonial.review}"
+          </p>
 
-              <div>
-                <h4 className="font-semibold text-[#111]">
-                  Rohit Mehta
-                </h4>
-
-                <p className="text-sm text-[#6d6d6d]">
-                  CEO, FinBudget
-                </p>
-              </div>
+          {/* User */}
+          <div className="mt-7 flex items-center gap-4">
+            <div className="flex h-14 w-14 items-center justify-center rounded-full bg-gradient-to-br from-[#0e6b58] to-[#073f35] text-lg font-bold text-white shadow-lg">
+              {initials}
             </div>
-          </article>
 
-          {/* Slider Dots */}
+            <div>
+              <h4 className="text-[17px] font-bold text-[#111827]">
+                {testimonial.name}
+              </h4>
 
-          <div className="mt-6 flex justify-center gap-2">
-            <span className="h-2 w-2 rounded-full bg-[#d7d7d7]" />
-            <span className="h-2 w-2 rounded-full bg-[#0b6b58]" />
-            <span className="h-2 w-2 rounded-full bg-[#d7d7d7]" />
+
+            </div>
           </div>
         </div>
 
-        {/* Right Side Image */}
-
+        {/* Right Image */}
         <div className="flex justify-center">
           <Image
             src="/Icons/testimonial-chat-removebg-preview.png"
-            alt="3D Chat"
-            width={320}
-            height={320}
+            alt="Testimonials"
+            width={300}
+            height={300}
             className="object-contain"
           />
         </div>
       </section>
-   <section
-  id="contact"
-  className={`${shell} flex items-center justify-between gap-6 rounded-2xl bg-[radial-gradient(circle_at_82%_48%,rgba(255,255,255,0.18),transparent_14rem),linear-gradient(120deg,#021d19,#084638)] px-8 py-6 text-white max-lg:flex-col max-lg:items-start max-lg:px-6 max-lg:py-5`}
->
-  <div>
-    <p className="mb-2 text-[10px] font-black uppercase tracking-[0.12em] text-white/70">
-      Ready To Grow?
-    </p>
 
-    <h2 className="text-[clamp(24px,2.6vw,36px)] font-semibold leading-tight">
-      Let's Build Something Amazing Together
-    </h2>
+      <section
+        id="contact"
+        className={`${shell} flex items-center justify-between gap-6 rounded-2xl bg-[radial-gradient(circle_at_82%_48%,rgba(255,255,255,0.18),transparent_14rem),linear-gradient(120deg,#021d19,#084638)] px-8 py-6 text-white max-lg:flex-col max-lg:items-start max-lg:px-6 max-lg:py-5`}
+      >
+        <div>
+          <p className="mb-2 text-[10px] font-black uppercase tracking-[0.12em] text-white/70">
+            Ready To Grow?
+          </p>
 
-    <p className="mt-2 text-[15px] text-[#d8e5df]">
-      Your growth story starts with the right strategy.
-    </p>
-  </div>
+          <h2 className="text-[clamp(24px,2.6vw,36px)] font-semibold leading-tight">
+            Let's Build Something Amazing Together
+          </h2>
 
-  <a
-    href="#"
-    className="inline-flex h-12 items-center gap-2 rounded-full bg-white px-7 text-[15px] font-semibold text-[#073f35] shadow-lg transition hover:-translate-y-0.5 hover:shadow-xl"
-  >
-    Get a Free Quote
-    <ArrowRight size={18} />
-  </a>
-</section>
+          <p className="mt-2 text-[15px] text-[#d8e5df]">
+            Your growth story starts with the right strategy.
+          </p>
+        </div>
+
+        <a
+          href="#"
+          className="inline-flex h-12 items-center gap-2 rounded-full bg-white px-7 text-[15px] font-semibold text-[#073f35] shadow-lg transition hover:-translate-y-0.5 hover:shadow-xl"
+        >
+          Get a Free Quote
+          <ArrowRight size={18} />
+        </a>
+      </section>
 
       <Footer />
     </main>
