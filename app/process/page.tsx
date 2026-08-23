@@ -2,29 +2,24 @@
 
 import { useState } from "react";
 import {
-  Search,
-  Compass,
-  PenTool,
-  Code2,
-  ShieldCheck,
-  Rocket,
-  TrendingUp,
-  Check,
   ChevronDown,
   ArrowRight,
   Cloud,
   Triangle,
 } from "lucide-react";
-import { FaSlack, FaGithub, FaFigma } from "react-icons/fa";
+import { FaCheck, FaChartLine, FaCode, FaCompass, FaGithub, FaPenNib, FaRocket, FaSearch, FaShieldAlt, FaSlack, FaFigma } from "react-icons/fa";
+import FloatingSocial from "../components/FloatingSocial";
+
+
 
 
 import Footer from "../components/Footer";
 import Navbar from "../components/Navbar";
-import type { LucideIcon } from "lucide-react";
+import type { IconType } from "react-icons";
 
 interface Step {
   number: string;
-  icon: LucideIcon;
+  icon: IconType;
   eyebrow: string;
   title: string;
   description: string;
@@ -60,11 +55,11 @@ interface FaqItemProps {
 const STEPS: Step[] = [
   {
     number: "01",
-    icon: Search,
+    icon: FaSearch,
     eyebrow: "Discovery",
-    title: "We Understand Your Vision",
+    title: "Start with the real picture",
     description:
-      "We start by learning about your business, goals, audience, and challenges to create a strong foundation.",
+      "Before we suggest a thing, we get close to the business: what needs to change, who it is for and what is getting in the way.",
     checklist: [
       "Business Goals",
       "Market Research",
@@ -73,16 +68,16 @@ const STEPS: Step[] = [
       "Competitor Analysis",
       "Budget & Timeline",
     ],
-    image: "/process/vision.png",
+    image: "/process/vision.webp",
     imageSide: "left",
   },
   {
     number: "02",
-    icon: Compass,
+    icon: FaCompass,
     eyebrow: "Strategy",
-    title: "We Plan For Success",
+    title: "Choose the right priorities",
     description:
-      "We craft a strategic roadmap tailored to your business that aligns with your goals and market opportunities.",
+      "We turn the useful insights into a focused plan, so everyone knows what we are making and why it matters.",
     checklist: [
       "Brand Strategy",
       "Content Strategy",
@@ -91,16 +86,16 @@ const STEPS: Step[] = [
       "Information Architecture",
       "Marketing Strategy",
     ],
-    image: "/process/success.jpg",
+    image: "/process/success.webp",
     imageSide: "right",
   },
   {
     number: "03",
-    icon: PenTool,
+    icon: FaPenNib,
     eyebrow: "Design",
-    title: "We Design With Purpose",
+    title: "Make the idea tangible",
     description:
-      "Our design team creates intuitive, engaging and conversion-focused designs that bring your brand to life.",
+      "We shape the message, experience and visual system into something people can understand quickly and remember.",
     checklist: [
       "Wireframes",
       "Design System",
@@ -109,16 +104,16 @@ const STEPS: Step[] = [
       "Prototyping",
       "Revisions & Feedback",
     ],
-    image: "/process/purpose.png",
+    image: "/process/purpose.webp",
     imageSide: "left",
   },
   {
     number: "04",
-    icon: Code2,
+    icon: FaCode,
     eyebrow: "Development",
-    title: "We Build With Precision",
+    title: "Build it properly",
     description:
-      "Our developers turn designs into fast, secure and scalable websites and applications.",
+      "Design becomes a fast, dependable digital product with the details that make it easy to use on every screen.",
     checklist: [
       "Front-end Development",
       "API Development",
@@ -127,16 +122,16 @@ const STEPS: Step[] = [
       "CMS Integration",
       "Responsive Development",
     ],
-    image: "/process/precision.png",
+    image: "/process/precision.webp",
     imageSide: "right",
   },
   {
     number: "05",
-    icon: ShieldCheck,
+    icon: FaShieldAlt,
     eyebrow: "Testing",
-    title: "We Ensure Quality",
+    title: "Check the details",
     description:
-      "Every project goes through rigorous testing to ensure performance, security, and a seamless experience.",
+      "We test the journeys that matter, fix the rough edges and make sure the work holds up beyond the presentation.",
     checklist: [
       "Functionality Testing",
       "Speed Optimization",
@@ -145,16 +140,16 @@ const STEPS: Step[] = [
       "Mobile Responsiveness",
       "Security Testing",
     ],
-    image: "/process/quality.png",
+    image: "/process/quality.webp",
     imageSide: "left",
   },
   {
     number: "06",
-    icon: Rocket,
+    icon: FaRocket,
     eyebrow: "Launch",
-    title: "We Launch With Confidence",
+    title: "Go live without surprises",
     description:
-      "Once everything is perfect, we launch your project and make it live for the world.",
+      "We coordinate the final checks, tracking and handover so launch day feels calm, not chaotic.",
     checklist: [
       "Deployment",
       "Analytics Setup",
@@ -163,16 +158,16 @@ const STEPS: Step[] = [
       "SSL & Security",
       "Performance Check",
     ],
-    image: "/process/confidense.png",
+    image: "/process/confidense.webp",
     imageSide: "right",
   },
   {
     number: "07",
-    icon: TrendingUp,
+    icon: FaChartLine,
     eyebrow: "Growth",
-    title: "We Help You Grow",
+    title: "Keep improving what works",
     description:
-      "Our relationship doesn't end at launch. We continue to optimize and grow your digital presence.",
+      "After launch, we use the signals that matter to refine the work and find the next useful opportunity.",
     checklist: [
       "SEO & Content Marketing",
       "Analytics & Reporting",
@@ -181,20 +176,20 @@ const STEPS: Step[] = [
       "Conversion Optimization",
       "Continuous Improvement",
     ],
-    image: "/process/grow.png",
+    image: "/process/grow.webp",
     imageSide: "left",
   },
 ];
 
 const TOOLS = [
   { name: "Figma", icon: FaFigma },
-  { name: "React", icon: Code2 },
+  { name: "React", icon: FaCode },
   { name: "Next.js", icon: Triangle },
-  { name: "Node.js", icon: Code2 },
-  { name: "WordPress", icon: Compass },
-  { name: "Shopify", icon: Rocket },
-  { name: "Google Ads", icon: TrendingUp },
-  { name: "Analytics", icon: TrendingUp },
+  { name: "Node.js", icon: FaCode },
+  { name: "WordPress", icon: FaCompass },
+  { name: "Shopify", icon: FaRocket },
+  { name: "Google Ads", icon: FaChartLine },
+  { name: "Analytics", icon: FaChartLine },
   { name: "GitHub", icon: FaGithub },
   { name: "Slack", icon: FaSlack },
   { name: "Cloudflare", icon: Cloud },
@@ -202,12 +197,12 @@ const TOOLS = [
 ];
 
 const TIMELINE = [
-  { label: "Week 1", phase: "Discovery", icon: Rocket },
-  { label: "Week 2", phase: "Strategy", icon: PenTool },
-  { label: "Week 3-4", phase: "Design", icon: Compass },
-  { label: "Week 5-7", phase: "Development", icon: Code2 },
-  { label: "Week 8", phase: "Testing", icon: ShieldCheck },
-  { label: "Week 9", phase: "Launch", icon: Rocket },
+  { label: "Week 1", phase: "Discovery", icon: FaRocket },
+  { label: "Week 2", phase: "Strategy", icon: FaPenNib },
+  { label: "Week 3-4", phase: "Design", icon: FaCompass },
+  { label: "Week 5-7", phase: "Development", icon: FaCode },
+  { label: "Week 8", phase: "Testing", icon: FaShieldAlt },
+  { label: "Week 9", phase: "Launch", icon: FaRocket },
 ];
 
 const COLLAB = [
@@ -254,7 +249,7 @@ function Checklist({ items }: ChecklistProps) {
       {items.map((item) => (
         <li key={item} className="flex items-center gap-2 text-sm text-stone-600">
           <span className="flex h-4 w-4 shrink-0 items-center justify-center rounded-full bg-emerald-50 text-emerald-600">
-            <Check className="h-3 w-3" strokeWidth={3} />
+            <FaCheck className="h-3 w-3" aria-hidden="true" />
           </span>
           {item}
         </li>
@@ -269,8 +264,7 @@ function ProcessStep({
 }: ProcessStepProps) {
   const Icon = step.icon;
   const imageBlock = (
-    <div className="relative aspect-[4/3] w-full overflow-hidden rounded-2xl bg-stone-200">
-      {/* Replace with the real screenshot/photo for this step */}
+    <div className="relative aspect-[4/3] w-full overflow-hidden rounded-[5px] bg-stone-200">
       <img
         src={step.image}
         alt={step.title}
@@ -281,10 +275,11 @@ function ProcessStep({
 
   const textBlock = (
     <div className="flex flex-col justify-center">
-      <span className="text-xs font-semibold uppercase tracking-widest text-emerald-700">
-        {step.eyebrow}
-      </span>
-      <h3 className="mt-2 text-2xl font-bold text-stone-900 sm:text-3xl">
+      <div className="flex items-center gap-3">
+        <span className="grid size-9 place-items-center rounded-full bg-[#e4efe9] text-[#073f35]"><Icon className="size-4" /></span>
+        <span className="text-xs font-bold uppercase tracking-[0.16em] text-[#0e6b58]">{step.eyebrow}</span>
+      </div>
+      <h3 className="mt-4 text-2xl font-bold tracking-[-0.03em] text-[#021d19] sm:text-3xl">
         {step.title}
       </h3>
       <p className="mt-3 max-w-md text-sm leading-relaxed text-stone-500">
@@ -295,21 +290,17 @@ function ProcessStep({
   );
 
   return (
-    <div className="relative flex gap-6 sm:gap-10">
+    <div className="relative flex gap-5 sm:gap-9">
       {/* timeline rail */}
       <div className="flex flex-col items-center">
-        <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full border border-stone-200 bg-white text-sm font-bold text-stone-900 shadow-sm">
+        <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full border border-[#cddbd5] bg-[#f7faf8] text-sm font-bold text-[#073f35]">
           {step.number}
         </div>
-        {!isLast && <div className="mt-2 w-px flex-1 bg-stone-200" />}
-        <div className="mt-2 flex h-11 w-11 shrink-0 items-center justify-center rounded-full border border-stone-200 bg-white text-emerald-700 shadow-sm">
-          <Icon className="h-5 w-5" />
-        </div>
-        {!isLast && <div className="mt-2 w-px flex-1 bg-stone-200" />}
+        {!isLast && <div className="mt-3 w-px flex-1 bg-[#dce5e0]" />}
       </div>
 
       {/* content */}
-      <div className="grid flex-1 grid-cols-1 gap-8 pb-16 sm:grid-cols-2 sm:items-center sm:gap-10">
+      <div className="grid flex-1 grid-cols-1 gap-8 pb-20 sm:grid-cols-2 sm:items-center sm:gap-12">
         {step.imageSide === "left" ? (
           <>
             {imageBlock}
@@ -355,21 +346,23 @@ export default function ProcessPage() {
 const [openFaq, setOpenFaq] = useState<number | null>(0);
 
   return (
-    <div className="bg-[#F7F4ED] text-stone-900">
+    <div className="bg-white text-stone-900">
       <Navbar />
+          <FloatingSocial />
+
 
       {/* ---------------------------------------------------------------- */}
       {/* HERO                                                              */}
       {/* ---------------------------------------------------------------- */}
-     <section className="relative overflow-hidden">
+     <section className="relative overflow-hidden border-b border-[#e5ded3] bg-[#f8f7f4]">
   {/* Background */}
   <div className="absolute inset-0">
     <div className="absolute left-0 top-0 h-[420px] w-[420px] rounded-full bg-emerald-100/60 blur-3xl" />
     <div className="absolute right-0 bottom-0 h-[320px] w-[320px] rounded-full bg-amber-100/50 blur-3xl" />
   </div>
 
-  <div className="relative mx-auto max-w-7xl px-6 py-16 lg:px-8">
-    <div className="grid items-center gap-16 lg:grid-cols-2">
+  <div className="relative mx-auto max-w-6xl px-6 py-20 lg:px-8">
+    <div className="grid items-center gap-14 lg:grid-cols-[0.9fr_1.1fr]">
 
       {/* Left */}
       <div>
@@ -378,24 +371,12 @@ const [openFaq, setOpenFaq] = useState<number | null>(0);
           Our Process
         </span>
 
-        <h1 className="mt-6 text-[clamp(25px,6vw,35px)] font-bold leading-[1.02] tracking-[-2px] text-[#021d19]">
-          From
-          <span className="italic font-light text-[#6b7b74]">
-            {" "}Vision
-          </span>
-
-          <br />
-
-          To
-          <span className="text-emerald-700">
-            {" "}Business Growth.
-          </span>
+        <h1 className="mt-6 max-w-[530px] text-[clamp(38px,5vw,56px)] font-semibold leading-[1.03] tracking-[-0.05em] text-[#021d19]">
+          A practical path from first conversation to <span className="text-[#0e6b58]">real progress.</span>
         </h1>
 
         <p className="mt-6 max-w-lg text-[16px] leading-8 text-stone-600">
-          Every successful project begins with understanding your business.
-          From strategy and branding to websites and digital marketing,
-          we create solutions that deliver measurable growth.
+          Good work needs a clear rhythm. We listen closely, make the right calls early and keep the work moving with you—not around you.
         </p>
 
         {/* <div className="mt-10 flex flex-wrap gap-4">
@@ -449,24 +430,24 @@ const [openFaq, setOpenFaq] = useState<number | null>(0);
       {/* Right */}
    <div className="relative">
   {/* Background Card */}
-  <div className="absolute -left-5 -top-5 hidden h-full w-full rounded-[36px] bg-[#073f35]/5 lg:block" />
+  <div className="absolute -left-4 -top-4 hidden h-full w-full rounded-[6px] bg-[#073f35]/8 lg:block" />
 
-  <div className="relative overflow-hidden rounded-[28px] border border-stone-200 bg-white p-3 shadow-[0_20px_60px_rgba(7,63,53,0.12)] sm:p-5">
+  <div className="relative overflow-hidden rounded-[6px] border border-[#ded8cf] bg-white p-3 shadow-[0_20px_60px_rgba(7,63,53,0.10)] sm:p-4">
     {/* Image */}
     <img
-      src="/process/process.jpg"
-      alt="Process"
-      className="h-auto w-full rounded-2xl object-cover"
+      src="/process/process-hero-v2.webp"
+      alt="Spark Skylytics team working through a project plan"
+      className="aspect-[4/3] w-full rounded-[3px] object-cover"
     />
 
     {/* Process Card */}
     <div
       className="
         mt-5
-        rounded-2xl
+        rounded-[4px]
         bg-white
         p-4
-        shadow-xl
+        shadow-[0_12px_30px_rgba(7,63,53,0.16)]
 
         lg:absolute
         lg:bottom-6
@@ -475,20 +456,19 @@ const [openFaq, setOpenFaq] = useState<number | null>(0);
         lg:w-[230px]
       "
     >
-      <p className="text-xs font-bold uppercase tracking-widest text-emerald-700">
-        Process
+      <p className="text-xs font-bold uppercase tracking-[0.16em] text-emerald-700">
+        Our working rhythm
       </p>
 
       <div className="mt-4 space-y-3">
         {[
-          "Discovery",
-          "Strategy",
-          "Creative",
-          "Marketing",
-          "Growth",
+          "Listen closely",
+          "Make the plan",
+          "Build the work",
+          "Learn and improve",
         ].map((step, i) => (
           <div key={step} className="flex items-center gap-3">
-            <div className="flex h-8 w-8 items-center justify-center rounded-full bg-emerald-100 text-sm font-bold text-emerald-700">
+            <div className="flex h-7 w-7 items-center justify-center rounded-full bg-emerald-100 text-xs font-bold text-emerald-700">
               {i + 1}
             </div>
 
@@ -508,7 +488,12 @@ const [openFaq, setOpenFaq] = useState<number | null>(0);
       {/* ---------------------------------------------------------------- */}
       {/* STEPS TIMELINE                                                    */}
       {/* ---------------------------------------------------------------- */}
-      <section className="mx-auto max-w-6xl px-6 pt-4 lg:px-8">
+      <section className="mx-auto max-w-6xl px-6 pt-20 lg:px-8">
+        <div className="mb-16 grid max-w-3xl gap-4">
+          <span className="text-xs font-bold uppercase tracking-[0.16em] text-[#0e6b58]">How we work</span>
+          <h2 className="text-[clamp(30px,3.5vw,46px)] font-semibold leading-[1.06] tracking-[-0.04em] text-[#021d19]">Enough structure to stay sharp. Enough room to do the work well.</h2>
+          <p className="max-w-2xl text-[15px] leading-7 text-stone-600">Every brief is different, but the rhythm stays consistent. You get clear decisions, visible progress and a team that keeps the project connected to the original goal.</p>
+        </div>
         {STEPS.map((step, i) => (
           <ProcessStep
             key={step.number}
@@ -521,7 +506,7 @@ const [openFaq, setOpenFaq] = useState<number | null>(0);
       {/* ---------------------------------------------------------------- */}
       {/* TOOLS & TECHNOLOGIES                                              */}
       {/* ---------------------------------------------------------------- */}
-      <section className="mx-auto max-w-6xl px-6 pb-20 lg:px-8">
+      {/* <section className="mx-auto max-w-6xl px-6 pb-20 lg:px-8">
         <p className="text-center text-xs font-semibold uppercase tracking-widest text-stone-400">
           Tools &amp; Technologies We Use
         </p>
@@ -538,12 +523,12 @@ const [openFaq, setOpenFaq] = useState<number | null>(0);
             </div>
           ))}
         </div>
-      </section>
+      </section> */}
 
       {/* ---------------------------------------------------------------- */}
       {/* TIMELINE STRIP                                                    */}
       {/* ---------------------------------------------------------------- */}
-      <section className="mx-auto max-w-6xl px-6 pb-20 lg:px-8">
+      {/* <section className="mx-auto max-w-6xl px-6 pb-20 lg:px-8">
         <div className="grid grid-cols-1 gap-10 lg:grid-cols-[1fr_2fr] lg:items-center">
           <div>
             <span className="text-xs font-semibold uppercase tracking-widest text-stone-400">
@@ -585,7 +570,7 @@ const [openFaq, setOpenFaq] = useState<number | null>(0);
             ))}
           </div>
         </div>
-      </section>
+      </section> */}
 
       {/* ---------------------------------------------------------------- */}
       {/* COLLABORATION                                                     */}
@@ -594,7 +579,7 @@ const [openFaq, setOpenFaq] = useState<number | null>(0);
         <div className="grid grid-cols-1 gap-8 lg:grid-cols-2">
           <div className="overflow-hidden rounded-2xl bg-stone-200">
             <img
-              src="/process/steps.jpg"
+              src="/process/steps.webp"
               alt="Team collaborating"
               className="h-full w-full object-cover"
             />
@@ -617,7 +602,7 @@ const [openFaq, setOpenFaq] = useState<number | null>(0);
                   key={label}
                   className="flex items-center gap-2 rounded-xl border border-stone-200 px-4 py-3 text-sm font-medium text-stone-700"
                 >
-                  <Check className="h-4 w-4 text-emerald-600" />
+                  <FaCheck className="h-4 w-4 text-emerald-600" aria-hidden="true" />
                   {label}
                 </div>
               ))}
