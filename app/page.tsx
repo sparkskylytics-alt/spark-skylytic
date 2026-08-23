@@ -112,12 +112,10 @@ const reels = [
   ["Web Design Trends 2024", "12.4K", "/Reels/reel-1.mp4"],
   ["SEO Tips That Actually Work", "8.7K", "/Reels/reel-2.mp4"],
   ["Landing Page Tips That Convert", "11.6K", "/Reels/reel-3.mp4"],
-  ["Brand Identity Design Process", "9.3K", "/Reels/reel-4.mp4"],
   ["Brand Identity Design Process", "9.3K", "/Reels/reel-5.mp4"],
   ["Brand Identity Design Process", "9.3K", "/Reels/reel-6.mp4"],
   ["Brand Identity Design Process", "9.3K", "/Reels/reel-7.mp4"],
   ["Brand Identity Design Process", "9.3K", "/Reels/reel-8.mp4"],
-  ["Brand Identity Design Process", "9.3K", "/Reels/reel-9.mp4"],
 ];
 
 const projects = [
@@ -208,6 +206,9 @@ function LazyVideo({
   const [shouldLoad, setShouldLoad] = useState(false);
   const [isPlaying, setIsPlaying] = useState(autoPlay);
   const [muted, setMuted] = useState(true);
+  const [isReady, setIsReady] = useState(false);
+  const [hasFailed, setHasFailed] = useState(false);
+  const showVideo = isReady && !hasFailed;
 
   const startWithSound = () => {
     const video = videoRef.current;
@@ -257,6 +258,12 @@ function LazyVideo({
       }}
       onPointerLeave={stopPreview}
     >
+      {!showVideo && (
+        <div
+          className="absolute inset-0 bg-gradient-to-br from-[#0a5144] via-[#073f35] to-[#021d19]"
+          aria-hidden="true"
+        />
+      )}
       {shouldLoad && (
         <video
           ref={videoRef}
@@ -265,6 +272,8 @@ function LazyVideo({
           loop
           playsInline
           preload="metadata"
+          onLoadedData={() => setIsReady(true)}
+          onError={() => setHasFailed(true)}
           onClick={() => {
             if (autoPlay) return;
             if (videoRef.current?.paused) startWithSound();
@@ -272,7 +281,7 @@ function LazyVideo({
           }}
           onPlay={() => setIsPlaying(true)}
           onPause={() => setIsPlaying(false)}
-          className="h-full w-full object-cover"
+          className={`h-full w-full object-cover transition-opacity duration-300 ${showVideo ? "opacity-100" : "opacity-0"}`}
           aria-label={autoPlay ? undefined : isPlaying ? "Pause reel with sound" : "Play reel with sound"}
         >
           <source src={src} type="video/mp4" />
