@@ -30,7 +30,7 @@ const legalContent = {
       ["How we use it", "We use this information to respond to enquiries, prepare proposals, deliver services, improve our website and send relevant service updates. We do not sell your personal information."],
       ["Marketing and analytics", "Our website may use cookies and analytics tools to understand traffic and improve performance. You can control cookies through your browser settings."],
       ["Sharing and security", "We share information only with trusted service providers when needed to operate our business or deliver agreed services, or where required by law. We use reasonable safeguards to protect information, but no online transmission is completely secure."],
-      ["Your choices", "You may ask to access, correct or delete your personal information, or unsubscribe from marketing emails, by contacting us at connect@sparkskylytics.com."],
+      ["Your choices", "You may ask to access, correct or delete your personal information, or unsubscribe from marketing emails, by contacting us at sparkskylytics@gmail.com."],
     ],
   },
   terms: {
@@ -102,7 +102,7 @@ export default function Footer() {
           <p className="mb-5 text-[10px] font-black uppercase tracking-[0.18em] text-[#77736c]">Contact</p>
           <div className="space-y-3 text-sm leading-6 text-[#59635f]">
             <a href="tel:+919997932324" className="block transition hover:text-[#073f35]">+91 99979 32324</a>
-            <a href="mailto:connect@sparkskylytics.com" className="block break-words transition hover:text-[#073f35]">connect@sparkskylytics.com</a>
+            <a href="mailto:sparkskylytics@gmail.com" className="block break-words transition hover:text-[#073f35]">sparkskylytics@gmail.com</a>
             <a href="https://maps.google.com/?q=Rampur+Tiraha+Muzaffarnagar+Uttar+Pradesh" target="_blank" rel="noopener noreferrer" className="block transition hover:text-[#073f35]">Rampur Tiraha,<br />Muzaffarnagar, Uttar Pradesh</a>
             <span className="block text-[#85857f]">Mon – Fri · 10:00 AM – 6:00 PM</span>
           </div>
@@ -151,7 +151,7 @@ export default function Footer() {
             ))}
           </div>
 
-          <p className="mt-8 border-t border-[#e7e4dc] pt-5 text-sm leading-6 text-[#59635f]">Questions about this document? Email <a className="font-semibold text-[#073f35] hover:underline" href="mailto:connect@sparkskylytics.com">connect@sparkskylytics.com</a>.</p>
+          <p className="mt-8 border-t border-[#e7e4dc] pt-5 text-sm leading-6 text-[#59635f]">Questions about this document? Email <a className="font-semibold text-[#073f35] hover:underline" href="mailto:sparkskylytics@gmail.com">sparkskylytics@gmail.com</a>.</p>
         </section>
       </div>
     )}

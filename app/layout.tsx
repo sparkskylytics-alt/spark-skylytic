@@ -82,7 +82,7 @@ export default function RootLayout({
         name: "Spark Skylytics",
         url: "https://sparkskylytics.com",
         logo: "https://sparkskylytics.com/Logo/new-logo.png",
-        email: "connect@sparkskylytics.com",
+        email: "sparkskylytics@gmail.com",
         telephone: "+91 9997932324",
         priceRange: "₹₹",
         areaServed: ["Muzaffarnagar", "Uttar Pradesh", "India"],

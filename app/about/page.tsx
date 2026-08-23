@@ -58,7 +58,7 @@ const team = [
     image: "/Team/Parth Sharma.webp",
     linkedin: "https://www.linkedin.com/in/parth-sharma-ps2005?utm_source=share_via&utm_content=profile&utm_medium=member_android",
     instagram: "https://www.instagram.com/panditparthsharma?igsh=MTJxNHRqdWpjb3NwMg%3D%3D&utm_source=qr",
-    email: "mailto:connect@sparkskylytics.com",
+    email: "mailto:sparkskylytics@gmail.com",
   },
   {
     name: "Tarun Baliyan",
@@ -79,7 +79,7 @@ const team = [
     image: "/Team/Anurag.webp",
     linkedin: "https://linkedin.com/in/anurag",
     instagram: "https://instagram.com/anurag",
-    email: "mailto:connect@sparkskylytics.com",
+    email: "mailto:sparkskylytics@gmail.com",
   },
 ];
 

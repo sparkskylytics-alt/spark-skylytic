@@ -17,7 +17,7 @@ const inputClass =
 const contactCards = [
   {
     title: "Email",
-    text: "connect@sparkskylytics.com",
+    text: "sparkskylytics@gmail.com",
     icon: FaEnvelope,
   },
   {
