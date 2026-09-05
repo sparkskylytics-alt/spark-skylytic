@@ -8,12 +8,11 @@ import { ArrowRight, ChevronDown, Menu, X } from "lucide-react";
 
 const navItems = [
   ["Home", "/"],
-  ["Services", "/services"],
-  ["About Us", "/about"],
-  // ["Portfolio", "/portfolio"],
-  ["Process", "/process"],
-  // ["Blog", "/#blog"],
-  ["Contact", "/contact"],
+  ["Services", "/services/"],
+  ["About Us", "/about/"],
+  ["Process", "/process/"],
+  ["Blog", "/blog/"],
+  ["Contact", "/contact/"],
 ];
 
 type NavbarProps = {
@@ -73,7 +72,7 @@ export default function Navbar({ active }: NavbarProps) {
         <div className="flex items-center gap-3">
           <Link
             className="group inline-flex min-h-[42px] items-center justify-center gap-2 rounded-full bg-[#073f35] px-5 text-sm font-semibold leading-none text-white shadow-[0_10px_22px_rgba(7,63,53,0.25)] transition duration-200 hover:-translate-y-0.5 hover:bg-[#0a5144] max-sm:hidden"
-            href="/contact"
+            href="/contact/"
           >
             Let&apos;s Talk
             <ArrowRight
@@ -142,7 +141,7 @@ export default function Navbar({ active }: NavbarProps) {
 
           <Link
             className="mt-2 inline-flex min-h-[48px] items-center justify-center gap-2 rounded-full bg-[#073f35] px-5 text-sm font-semibold leading-none text-white shadow-[0_12px_24px_rgba(7,63,53,0.25)] transition hover:bg-[#0a5144]"
-            href="/contact"
+            href="/contact/"
             onClick={() => setMenuOpen(false)}
           >
             Let&apos;s Talk <ArrowRight size={15} />

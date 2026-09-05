@@ -27,7 +27,7 @@ const contactCards = [
   },
   {
     title: "Office",
-    text: "Rampur Tiraha, Muzaffarnagar, Uttar Pradesh",
+    text: "Rampur Tiraha, Muzaffarnagar, Uttar Pradesh — plus remote clients across India & worldwide",
     icon: FaMapMarkerAlt,
   },
   {

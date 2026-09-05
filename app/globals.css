@@ -81,3 +81,58 @@ body {
     transition: none;
   }
 }
+
+/* Renders raw HTML from the WordPress REST API on blog post pages. */
+.wp-content {
+  color: #374151;
+  font-size: 15px;
+  line-height: 1.8;
+}
+
+.wp-content > * + * {
+  margin-top: 1.25em;
+}
+
+.wp-content h2 {
+  font-size: 24px;
+  font-weight: 700;
+  color: #111312;
+  letter-spacing: -0.02em;
+}
+
+.wp-content h3 {
+  font-size: 19px;
+  font-weight: 700;
+  color: #111312;
+}
+
+.wp-content a {
+  color: #073f35;
+  font-weight: 600;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.wp-content ul,
+.wp-content ol {
+  padding-left: 1.25em;
+}
+
+.wp-content ul {
+  list-style: disc;
+}
+
+.wp-content ol {
+  list-style: decimal;
+}
+
+.wp-content img {
+  border-radius: 6px;
+}
+
+.wp-content blockquote {
+  border-left: 3px solid #073f35;
+  padding-left: 1em;
+  color: #5d6864;
+  font-style: italic;
+}

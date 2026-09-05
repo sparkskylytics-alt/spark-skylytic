@@ -15,7 +15,7 @@ const services = [
     description: "Clear, fast websites that turn a first visit into the next right action.",
     image: "/services/webdesign.webp",
     icon: FaDesktop,
-    items: ["Custom websites", "E-commerce", "CMS development", "Ongoing support"],
+    items: ["Custom websites", "Custom software development", "E-commerce", "CMS development", "Ongoing support"],
   },
   {
     title: "Digital marketing",
@@ -57,7 +57,7 @@ export default function ServicesPage() {
             </div>
             <div className="mt-7 flex items-end justify-between gap-5 border-t border-[#d8d4cd] pt-5">
               <p className="max-w-[270px] text-[13px] leading-6 text-[#676963]">Strategy, websites, search and marketing designed to work together.</p>
-              <a href="/contact" aria-label="Talk about your project" className="grid size-11 shrink-0 place-items-center rounded-full bg-[#151c19] text-white transition hover:bg-[#176c5b]"><ArrowRight size={18} /></a>
+              <a href="/contact/" aria-label="Talk about your project" className="grid size-11 shrink-0 place-items-center rounded-full bg-[#151c19] text-white transition hover:bg-[#176c5b]"><ArrowRight size={18} /></a>
             </div>
           </div>
           <div className="relative min-h-[270px] bg-[#e8e5df]">

@@ -241,7 +241,7 @@ export default function AboutPage() {
               <p className="mt-5 text-[15px] leading-7 text-[#5d6864]">
                 No hand-offs to a black box. The people you meet are the people thinking through the work, making the calls and keeping it moving.
               </p>
-              <a href="/contact" className="mt-7 inline-flex items-center gap-2 text-sm font-bold text-[#073f35] underline decoration-[#a5c5bb] underline-offset-4 transition hover:text-[#0e6b58]">
+              <a href="/contact/" className="mt-7 inline-flex items-center gap-2 text-sm font-bold text-[#073f35] underline decoration-[#a5c5bb] underline-offset-4 transition hover:text-[#0e6b58]">
                 Start a conversation <ArrowRight size={16} />
               </a>
             </div>
@@ -300,7 +300,7 @@ export default function AboutPage() {
     </div>
 
     <a
-      href="/contact"
+      href="/contact/"
       className="inline-flex h-11 items-center justify-center gap-2 rounded-full border border-white/30 px-5 text-sm font-semibold transition-all duration-300 hover:-translate-y-0.5 hover:border-white hover:bg-white/10"
     >
       Schedule a Call

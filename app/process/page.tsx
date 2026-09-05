@@ -237,6 +237,10 @@ const FAQS = [
     q: " How do I get started with Spark Skylytics?",
     a: "Getting started is simple. Book your free business audit, share your business goals with our team, and we'll create a customized digital marketing strategy designed to increase leads, sales, and long-term growth.",
   },
+  {
+    q: "Do you only work with local businesses in Muzaffarnagar?",
+    a: "No. While our office is based in Muzaffarnagar, we work remotely with clients across India and internationally. Video calls, shared project dashboards and regular digital check-ins mean location is never a barrier to working with us.",
+  },
 ];
 
 /* -------------------------------------------------------------------------- */
@@ -614,6 +618,23 @@ const [openFaq, setOpenFaq] = useState<number | null>(0);
       {/* ---------------------------------------------------------------- */}
       {/* FAQ                                                               */}
       {/* ---------------------------------------------------------------- */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "FAQPage",
+            mainEntity: FAQS.map((item) => ({
+              "@type": "Question",
+              name: item.q.trim(),
+              acceptedAnswer: {
+                "@type": "Answer",
+                text: item.a,
+              },
+            })),
+          }),
+        }}
+      />
       <section className="mx-auto max-w-6xl px-6 pb-24 lg:px-8">
         <div className="grid grid-cols-1 gap-10 lg:grid-cols-[1fr_2fr]">
           <div>

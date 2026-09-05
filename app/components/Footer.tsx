@@ -10,6 +10,7 @@ const quickLinks = [
   ["Services", "/services/"],
   ["About Us", "/about/"],
   ["Process", "/process/"],
+  ["Blog", "/blog/"],
   ["Contact", "/contact/"],
 ];
 
@@ -105,6 +106,7 @@ export default function Footer() {
             <a href="mailto:sparkskylytics@gmail.com" className="block break-words transition hover:text-[#073f35]">sparkskylytics@gmail.com</a>
             <a href="https://maps.google.com/?q=Rampur+Tiraha+Muzaffarnagar+Uttar+Pradesh" target="_blank" rel="noopener noreferrer" className="block transition hover:text-[#073f35]">Rampur Tiraha,<br />Muzaffarnagar, Uttar Pradesh</a>
             <span className="block text-[#85857f]">Mon – Fri · 10:00 AM – 6:00 PM</span>
+            <span className="block text-[#85857f]">Serving clients across India &amp; remotely worldwide</span>
           </div>
         </div>
       </div>
