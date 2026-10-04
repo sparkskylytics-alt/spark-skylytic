@@ -6,6 +6,7 @@ import { FaBullhorn, FaBullseye, FaChartBar, FaDesktop, FaGlobe, FaPalette, FaSe
 import Footer from "../components/Footer";
 import FloatingSocial from "../components/FloatingSocial";
 import Navbar from "../components/Navbar";
+import { locations } from "../../lib/locations";
 
 const shell = "mx-auto w-[min(1120px,calc(100%_-_48px))] max-sm:w-[calc(100%_-_28px)]";
 
@@ -50,10 +51,10 @@ export default function ServicesPage() {
         <div className="grid overflow-hidden rounded-[6px] border border-[#dedbd5] bg-[#f7f6f3] lg:grid-cols-[0.92fr_1.08fr]">
           <div className="flex min-h-[310px] flex-col p-7 lg:p-9">
             <div>
-              <p className="text-[11px] font-black uppercase tracking-[0.18em] text-[#77736c]">Digital services</p>
-              <h1 className="mt-7 max-w-[440px] text-[clamp(34px,3.8vw,50px)] font-semibold leading-[1.02] tracking-[-0.05em]">
+              <h1 className="text-[11px] font-black uppercase tracking-[0.18em] text-[#77736c]">SEO, Web Design &amp; Digital Marketing Services in India</h1>
+              <p className="mt-7 max-w-[440px] text-[clamp(34px,3.8vw,50px)] font-semibold leading-[1.02] tracking-[-0.05em]">
                 More clarity for the work that helps your business grow.
-              </h1>
+              </p>
             </div>
             <div className="mt-7 flex items-end justify-between gap-5 border-t border-[#d8d4cd] pt-5">
               <p className="max-w-[270px] text-[13px] leading-6 text-[#676963]">Strategy, websites, search and marketing designed to work together.</p>
@@ -103,6 +104,18 @@ export default function ServicesPage() {
               </article>
             ))}
           </div>
+        </div>
+      </section>
+
+      <section className={`${shell} py-8`}>
+        <p className="mb-3 text-[11px] font-black uppercase tracking-[0.18em] text-[#77736c]">Across India</p>
+        <h2 className="mb-5 text-[clamp(25px,2.7vw,33px)] font-semibold leading-[1.04] tracking-[-0.045em]">Digital marketing services by city</h2>
+        <div className="flex flex-wrap gap-2">
+          {locations.map(({ slug, city }) => (
+            <a key={slug} href={`/digital-marketing-agency/${slug}/`} className="rounded-full border border-[#dedbd5] px-4 py-2 text-[13px] text-[#59635f] transition hover:border-[#176c5b] hover:text-[#176c5b]">
+              {city}
+            </a>
+          ))}
         </div>
       </section>
 

@@ -10,6 +10,7 @@ const quickLinks = [
   ["Services", "/services/"],
   ["About Us", "/about/"],
   ["Process", "/process/"],
+  ["Locations", "/digital-marketing-agency/"],
   ["Blog", "/blog/"],
   ["Contact", "/contact/"],
 ];
@@ -104,7 +105,7 @@ export default function Footer() {
           <div className="space-y-3 text-sm leading-6 text-[#59635f]">
             <a href="tel:+919997932324" className="block transition hover:text-[#073f35]">+91 99979 32324</a>
             <a href="mailto:sparkskylytics@gmail.com" className="block break-words transition hover:text-[#073f35]">sparkskylytics@gmail.com</a>
-            <a href="https://maps.google.com/?q=Rampur+Tiraha+Muzaffarnagar+Uttar+Pradesh" target="_blank" rel="noopener noreferrer" className="block transition hover:text-[#073f35]">Rampur Tiraha,<br />Muzaffarnagar, Uttar Pradesh</a>
+            <a href="https://www.google.com/maps/search/?api=1&query=Skylytics+Marketing+Rampur+Tiraha+Patel+Nagar+New+Mandi+Muzaffarnagar+251001" target="_blank" rel="noopener noreferrer" className="block transition hover:text-[#073f35]">Rampur Tiraha, Patel Nagar, New Mandi,<br />Muzaffarnagar, Uttar Pradesh 251001</a>
             <span className="block text-[#85857f]">Mon – Fri · 10:00 AM – 6:00 PM</span>
             <span className="block text-[#85857f]">Serving clients across India &amp; remotely worldwide</span>
           </div>

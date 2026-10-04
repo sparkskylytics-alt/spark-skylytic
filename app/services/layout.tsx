@@ -1,16 +1,16 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Digital Marketing, Web & Software Services",
-  description: "Brand strategy, website design, custom software development, SEO and performance marketing — delivered to clients across India and remotely worldwide.",
+  title: "SEO, Web Design & Digital Marketing Services in India",
+  description: "SEO services, website design, branding, Google & Meta Ads and custom software development for businesses across India — delivered remotely, with clear reporting.",
   openGraph: {
-    title: "Digital Marketing, Web & Software Services | Spark Skylytics",
-    description: "Brand strategy, website design, custom software development, SEO and performance marketing — delivered to clients across India and remotely worldwide.",
+    title: "SEO, Web Design & Digital Marketing Services in India | Spark Skylytics",
+    description: "SEO services, website design, branding, Google & Meta Ads and custom software development for businesses across India — delivered remotely, with clear reporting.",
     url: "/services/",
   },
   twitter: {
-    title: "Digital Marketing, Web & Software Services | Spark Skylytics",
-    description: "Brand strategy, website design, custom software development, SEO and performance marketing — delivered to clients across India and remotely worldwide.",
+    title: "SEO, Web Design & Digital Marketing Services in India | Spark Skylytics",
+    description: "SEO services, website design, branding, Google & Meta Ads and custom software development for businesses across India — delivered remotely, with clear reporting.",
   },
   keywords: [
     "digital marketing services",

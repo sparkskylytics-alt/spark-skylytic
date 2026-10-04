@@ -1,9 +1,11 @@
 import type { MetadataRoute } from "next";
 import { getAllPosts } from "../lib/wordpress";
+import { SITE_URL } from "../lib/site";
+import { locations } from "../lib/locations";
 
 export const dynamic = "force-static";
 
-const BASE_URL = "https://sparkskylytics.com";
+const BASE_URL = SITE_URL;
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const posts = await getAllPosts();
@@ -17,7 +19,15 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     { url: `${BASE_URL}/process/`, lastModified: buildDate, changeFrequency: "monthly", priority: 0.7 },
     { url: `${BASE_URL}/contact/`, lastModified: buildDate, changeFrequency: "monthly", priority: 0.7 },
     { url: `${BASE_URL}/blog/`, lastModified: buildDate, changeFrequency: "weekly", priority: 0.8 },
+    { url: `${BASE_URL}/digital-marketing-agency/`, lastModified: buildDate, changeFrequency: "monthly", priority: 0.7 },
   ];
+
+  const locationPages: MetadataRoute.Sitemap = locations.map(({ slug }) => ({
+    url: `${BASE_URL}/digital-marketing-agency/${slug}/`,
+    lastModified: buildDate,
+    changeFrequency: "monthly",
+    priority: 0.7,
+  }));
 
   const blogPages: MetadataRoute.Sitemap = posts.map((post) => ({
     url: `${BASE_URL}/blog/${post.slug}/`,
@@ -26,5 +36,5 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     priority: 0.6,
   }));
 
-  return [...staticPages, ...blogPages];
+  return [...staticPages, ...locationPages, ...blogPages];
 }

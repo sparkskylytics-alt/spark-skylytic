@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Blog",
-  description: "Practical guides on digital marketing, SEO, branding, web design and custom software development from the Spark Skylytics team.",
+  title: "Digital Marketing & SEO Blog for Indian Businesses",
+  description: "Practical guides on digital marketing, SEO, branding and web design for Indian businesses, from the Spark Skylytics team.",
   keywords: [
     "digital marketing blog",
     "SEO tips India",
@@ -12,13 +12,13 @@ export const metadata: Metadata = {
     "Spark Skylytics blog",
   ],
   openGraph: {
-    title: "Blog | Spark Skylytics",
-    description: "Practical guides on digital marketing, SEO, branding, web design and custom software development from the Spark Skylytics team.",
+    title: "Digital Marketing & SEO Blog for Indian Businesses | Spark Skylytics",
+    description: "Practical guides on digital marketing, SEO, branding and web design for Indian businesses, from the Spark Skylytics team.",
     url: "/blog/",
   },
   twitter: {
-    title: "Blog | Spark Skylytics",
-    description: "Practical guides on digital marketing, SEO, branding, web design and custom software development from the Spark Skylytics team.",
+    title: "Digital Marketing & SEO Blog for Indian Businesses | Spark Skylytics",
+    description: "Practical guides on digital marketing, SEO, branding and web design for Indian businesses, from the Spark Skylytics team.",
   },
   alternates: { canonical: "/blog/" },
 };

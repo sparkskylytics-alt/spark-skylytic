@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Raleway, Playfair_Display } from "next/font/google";
 import Script from "next/script";
 import "./globals.css";
+import { SITE_URL } from "../lib/site";
 
 const GA_MEASUREMENT_ID = "G-D3ZSZTM7RZ";
 
@@ -18,12 +19,12 @@ const playfair = Playfair_Display({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://sparkskylytics.com"),
+  metadataBase: new URL(SITE_URL),
   title: {
-    default: "Spark Skylytics | Digital Marketing, Web Design & Branding Agency",
+    default: "Digital Marketing & SEO Agency in India | Spark Skylytics",
     template: "%s | Spark Skylytics",
   },
-  description: "Spark Skylytics is a digital marketing agency for branding, web design and results-driven marketing — serving clients across India and remotely worldwide.",
+  description: "Spark Skylytics is a digital marketing agency in India offering SEO, website design, branding and Google & Meta Ads for businesses across India and worldwide.",
   keywords: [
     "digital marketing agency",
     "web design agency",
@@ -74,8 +75,8 @@ export const metadata: Metadata = {
     locale: "en_IN",
     url: "/",
     siteName: "Spark Skylytics",
-    title: "Spark Skylytics | Digital Marketing, Web Design & Branding Agency",
-    description: "Branding, web design and results-driven digital marketing for ambitious businesses — serving clients across India and remotely worldwide.",
+    title: "Digital Marketing & SEO Agency in India | Spark Skylytics",
+    description: "Spark Skylytics is a digital marketing agency in India offering SEO, website design, branding and Google & Meta Ads for businesses across India and worldwide.",
     images: [
       {
         url: "/social-share.png",
@@ -87,8 +88,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Spark Skylytics | Digital Marketing, Web Design & Branding Agency",
-    description: "Branding, web design and results-driven digital marketing for ambitious businesses — serving clients across India and remotely worldwide.",
+    title: "Digital Marketing & SEO Agency in India | Spark Skylytics",
+    description: "Spark Skylytics is a digital marketing agency in India offering SEO, website design, branding and Google & Meta Ads for businesses across India and worldwide.",
     images: ["/social-share.png"],
   },
 };
@@ -122,16 +123,14 @@ export default function RootLayout({
         "@context": "https://schema.org",
         "@type": "ProfessionalService",
         name: "Spark Skylytics",
-        url: "https://sparkskylytics.com",
-        logo: "https://sparkskylytics.com/Logo/new-logo.png",
+        url: SITE_URL,
+        logo: `${SITE_URL}/Logo/new-logo.png`,
         email: "sparkskylytics@gmail.com",
         telephone: "+91 9997932324",
         priceRange: "₹₹",
         areaServed: [
-          "Muzaffarnagar",
-          "Uttar Pradesh",
-          "India",
-          "Remote / Online Clients Worldwide",
+          { "@type": "Country", name: "India" },
+          "Worldwide (remote)",
         ],
         serviceType: [
           "Digital marketing",
@@ -150,11 +149,23 @@ export default function RootLayout({
         ],
         address: {
           "@type": "PostalAddress",
+          streetAddress: "Rampur Tiraha, Patel Nagar, New Mandi",
           addressLocality: "Muzaffarnagar",
+          postalCode: "251001",
           addressRegion: "Uttar Pradesh",
           addressCountry: "IN",
         },
-        image: "https://sparkskylytics.com/Logo/new-logo.png",
+        geo: { "@type": "GeoCoordinates", latitude: 29.520112, longitude: 77.711875 },
+        hasMap: "https://www.google.com/maps/search/?api=1&query=Skylytics+Marketing+Rampur+Tiraha+Patel+Nagar+New+Mandi+Muzaffarnagar+251001",
+        openingHoursSpecification: [
+          {
+            "@type": "OpeningHoursSpecification",
+            dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+            opens: "10:00",
+            closes: "18:00",
+          },
+        ],
+        image: `${SITE_URL}/Logo/new-logo.png`,
       }),
     }}
   />

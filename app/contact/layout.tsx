@@ -1,16 +1,16 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Contact Our Digital Growth Team",
-  description: "Talk to Spark Skylytics about branding, web design, SEO or digital marketing. We work with clients across India and remotely worldwide.",
+  title: "Contact Our Digital Marketing Agency in India",
+  description: "Get a free consultation on SEO, web design, branding or digital marketing. Spark Skylytics works with businesses in every Indian city and worldwide.",
   openGraph: {
-    title: "Contact Our Digital Growth Team | Spark Skylytics",
-    description: "Talk to Spark Skylytics about branding, web design, SEO or digital marketing. We work with clients across India and remotely worldwide.",
+    title: "Contact Our Digital Marketing Agency in India | Spark Skylytics",
+    description: "Get a free consultation on SEO, web design, branding or digital marketing. Spark Skylytics works with businesses in every Indian city and worldwide.",
     url: "/contact/",
   },
   twitter: {
-    title: "Contact Our Digital Growth Team | Spark Skylytics",
-    description: "Talk to Spark Skylytics about branding, web design, SEO or digital marketing. We work with clients across India and remotely worldwide.",
+    title: "Contact Our Digital Marketing Agency in India | Spark Skylytics",
+    description: "Get a free consultation on SEO, web design, branding or digital marketing. Spark Skylytics works with businesses in every Indian city and worldwide.",
   },
   keywords: [
     "contact digital marketing agency",

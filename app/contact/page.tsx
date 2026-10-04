@@ -27,7 +27,7 @@ const contactCards = [
   },
   {
     title: "Office",
-    text: "Rampur Tiraha, Muzaffarnagar, Uttar Pradesh — plus remote clients across India & worldwide",
+    text: "Rampur Tiraha, Patel Nagar, New Mandi, Muzaffarnagar, Uttar Pradesh 251001 — plus remote clients across India & worldwide",
     icon: FaMapMarkerAlt,
   },
   {
@@ -77,7 +77,7 @@ export default function ContactPage() {
         message: formData.message,
       };
 
-      const response = await fetch("https://formspree.io/f/mdaqezej", {
+      const response = await fetch("https://formspree.io/f/xzeznnpj", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -254,6 +254,7 @@ export default function ContactPage() {
         <div className="relative h-[360px] w-full">
           <iframe
             src="https://www.google.com/maps/embed?pb=!1m17!1m12!1m3!1d3471.8712435734346!2d77.71187499999999!3d29.520112!2m3!1f0!2f0!2f0!3m2!1i1024!2i768!4f13.1!3m2!1m1!2zMjnCsDMxJzEyLjQiTiA3N8KwNDInNDIuOCJF!5e0!3m2!1sen!2sin!4v1782752962487!5m2!1sen!2sin"
+            title="Spark Skylytics office location on Google Maps"
             className="h-full w-full"
             style={{ border: 0 }}
             loading="lazy"
@@ -271,12 +272,12 @@ export default function ContactPage() {
                   Spark Skylytics
                 </h4>
                 <p className="mt-1 text-sm leading-5 text-[#5d6864]">
-                  Muzaffarnagar,
+                  Rampur Tiraha, Patel Nagar, New Mandi,
                   <br />
-                  Uttar Pradesh, India
+                  Muzaffarnagar, Uttar Pradesh 251001
                 </p>
                 <a
-                  href="https://maps.google.com"
+                  href="https://www.google.com/maps/search/?api=1&query=Skylytics+Marketing+Rampur+Tiraha+Patel+Nagar+New+Mandi+Muzaffarnagar+251001"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="mt-2 inline-flex text-sm font-semibold text-[#0b6b58] hover:underline"

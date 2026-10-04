@@ -1,16 +1,16 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Our Process",
-  description: "See how Spark Skylytics turns business goals into clear strategy, creative work and measurable growth — whether you work with us locally or remotely.",
+  title: "How We Work With Clients Across India",
+  description: "See how Spark Skylytics runs digital marketing, SEO and website projects remotely for businesses across India — from first call to measurable growth.",
   openGraph: {
-    title: "Our Process | Spark Skylytics",
-    description: "See how Spark Skylytics turns business goals into clear strategy, creative work and measurable growth — whether you work with us locally or remotely.",
+    title: "How We Work With Clients Across India | Spark Skylytics",
+    description: "See how Spark Skylytics runs digital marketing, SEO and website projects remotely for businesses across India — from first call to measurable growth.",
     url: "/process/",
   },
   twitter: {
-    title: "Our Process | Spark Skylytics",
-    description: "See how Spark Skylytics turns business goals into clear strategy, creative work and measurable growth — whether you work with us locally or remotely.",
+    title: "How We Work With Clients Across India | Spark Skylytics",
+    description: "See how Spark Skylytics runs digital marketing, SEO and website projects remotely for businesses across India — from first call to measurable growth.",
   },
   keywords: [
     "digital marketing process",

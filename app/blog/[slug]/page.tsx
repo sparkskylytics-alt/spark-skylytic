@@ -5,6 +5,7 @@ import Footer from "../../components/Footer";
 import Navbar from "../../components/Navbar";
 import FloatingSocial from "../../components/FloatingSocial";
 import { getAllPosts, getPostBySlug } from "../../../lib/wordpress";
+import { SITE_URL } from "../../../lib/site";
 
 const shell = "mx-auto w-[min(820px,calc(100%_-_48px))] max-sm:w-[calc(100%_-_28px)]";
 
@@ -98,10 +99,10 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
             publisher: {
               "@type": "Organization",
               name: "Spark Skylytics",
-              logo: { "@type": "ImageObject", url: "https://sparkskylytics.com/Logo/new-logo.png" },
+              logo: { "@type": "ImageObject", url: `${SITE_URL}/Logo/new-logo.png` },
             },
             image: post.featuredImage ?? undefined,
-            mainEntityOfPage: `https://sparkskylytics.com/blog/${post.slug}/`,
+            mainEntityOfPage: `${SITE_URL}/blog/${post.slug}/`,
           }),
         }}
       />

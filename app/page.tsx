@@ -445,10 +445,13 @@ export default function Home() {
     transition-all duration-1000 ease-out
     ${heroLoaded ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}
   >
-    {/* Badge */}
+    {/* Badge - the real H1, so the page's main heading carries the search terms */}
+    <h1 className="mb-5 text-[12px] font-bold uppercase tracking-[0.14em] text-emerald-400 max-sm:mb-3 max-sm:text-[11px]">
+      Digital Marketing, SEO &amp; Web Design Agency in India
+    </h1>
 
     {/* Heading - Consistent typography */}
-    <h1 className="text-[clamp(32px,4vw,48px)] font-semibold leading-[1.20] tracking-tight text-white
+    <p className="text-[clamp(32px,4vw,48px)] font-semibold leading-[1.20] tracking-tight text-white
       max-lg:text-[clamp(28px,3.5vw,40px)] max-sm:text-[clamp(24px,6vw,32px)]">
       Ideas That Spark.
       <br />
@@ -456,7 +459,7 @@ export default function Home() {
       <span className="text-emerald-400">Drive Growth</span>
       <br />
       That Lasts.
-    </h1>
+    </p>
 
     {/* Description - Consistent typography */}
     <p className="mt-8 max-w-[520px] text-[clamp(16px,1.2vw,18px)] leading-[1.8] text-white/80
